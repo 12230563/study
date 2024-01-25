@@ -1,21 +1,30 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    int a, b, i, n;
-    cin >> a >> b;
-    i = a;
-    n = 0;
+bool isprime(int n) {
+    if (n <= 1) {
+        return false;
+    }
 
-    for(i = a; i <= b; i++){
-        if(1920 % i == 0 && 2880 % i == 0){
-            n += 1;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            return false;
         }
     }
-    if(n == 0){
-        cout << 0;
+
+    return true;
+}
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    if (isprime(n)) {
+        cout << 'P';
+    } else {
+        cout << 'C';
     }
-    else{
-        cout << 1;
-    }
+
+    return 0;
 }

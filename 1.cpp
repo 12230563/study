@@ -2,18 +2,24 @@
 using namespace std;
 
 int main(){
+    int num;
 
-    int rows, cols;
+    do{
+        cout << "Enter a positive integer : ";
+        cin >> num;
+    }while(num <= 0);
 
-    cout << "Enter number of rows : ";
-    cin >> rows;
-    cout << "Enter number of columns : ";
-    cin >> cols;
-
-    for(int count1 = 1; count1 <= rows; count1++){
-        for(int count2 = 1; count2 <= cols; count2++){
-            cout << "*";
-        }
-        cout << endl;
+    if(num == 1){
+        cout << "1 is not a Com. nor a prime.";
+        return 0;
     }
+
+    for (int i = 2; i < num; i++){
+        if (num % i == 0){
+            cout << num << "is Com. Number" << endl;
+            cout << "Least divisor is " << i <<endl;
+            return 0;
+        }
+    }
+    cout << num << "is prime." << endl;
 }

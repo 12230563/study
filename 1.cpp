@@ -1,36 +1,43 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
+
+int input();
+bool process(int year);
+void output(int year, bool result);
+
 int main(){
-    int base, exponent;
-    unsigned long int power, temp;
-    bool overflow;
+    int year = input();
+    bool result = process(year);
+    output(year, result);
 
+}
+
+int input(){
+    int year;
     do{
-        cout << "Enter a positive integer : ";
-        cin >> base;
-    }while(base < 0);
+        cout << "Input year : ";
+        cin >> year;
+    }while(year <= 1582);
+    return year;
+}
 
-    do{
-        cout << "Enter a positive integer : ";
-        cin >> exponent;
-    }while (exponent < 0);
+bool process(int year){
+    bool criteria1 = (year % 4 == 0);
+    bool criteria2 = (year % 100 != 0) || (year % 400 == 0);
+    return (criteria1) && (criteria2);
+}
 
-    power = 1;
-    temp = power;
-    overflow = false;
-
-    for (int i = 1;(i <= exponent) && (!overflow); i++){
-        power *= base;
-        if (power / base != temp){
-            overflow = true;
-        }
-        temp = power;
-    }
-    if (overflow){
-        cout << "Overflow occurred! Try again with smaller base or exp. ";
+void output(int year, bool result){
+    if (result){
+        cout << year << " is leap year";
     }
     else{
-        cout << base << "^" << exponent << " = " << power;
+        cout << year << " is not leap year";
     }
+    return;
 }
+
+
+
+

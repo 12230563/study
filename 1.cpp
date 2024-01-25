@@ -2,24 +2,35 @@
 using namespace std;
 
 int main(){
-    int num;
+    int base, exponent;
+    unsigned long int power, temp;
+    bool overflow;
 
     do{
         cout << "Enter a positive integer : ";
-        cin >> num;
-    }while(num <= 0);
+        cin >> base;
+    }while(base < 0);
 
-    if(num == 1){
-        cout << "1 is not a Com. nor a prime.";
-        return 0;
-    }
+    do{
+        cout << "Enter a positive integer : ";
+        cin >> exponent;
+    }while (exponent < 0);
 
-    for (int i = 2; i < num; i++){
-        if (num % i == 0){
-            cout << num << "is Com. Number" << endl;
-            cout << "Least divisor is " << i <<endl;
-            return 0;
+    power = 1;
+    temp = power;
+    overflow = false;
+
+    for (int i = 1;(i <= exponent) && (!overflow); i++){
+        power *= base;
+        if (power / base != temp){
+            overflow = true;
         }
+        temp = power;
     }
-    cout << num << "is prime." << endl;
+    if (overflow){
+        cout << "Overflow occurred! Try again with smaller base or exp. ";
+    }
+    else{
+        cout << base << "^" << exponent << " = " << power;
+    }
 }
